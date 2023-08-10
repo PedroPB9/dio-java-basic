@@ -1,50 +1,35 @@
 import java.util.Scanner;
+import com.calendary.month.Month;;
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Month(number): ");
         int month = scanner.nextInt();
+        Month monthName = new Month();
+        String monthValue = monthName.GetMonth(month);
+        System.out.println("Month name: "+monthValue);
+
 
         System.out.println("Weekday: ");
         String weekDay = scanner.next();
-        int weekNumber;
-
-        String monthName = " ";
-        if(month==1){
-            monthName = "January";
-        }else if(month==2){
-            monthName = "February";
-        }else if(month==3){
-            monthName = "March";
-        }else if(month==4){
-            monthName = "April";
-        }
-        else if(month==5){
-            monthName = "May";
-        }else if(month==6){
-            monthName = "June";
-        }else if(month==7){
-            monthName = "July";
-        }else if(month==8){
-            monthName = "August";
-        }else if(month==9){
-            monthName = "September";
-        }else if(month==10){
-            monthName = "October";
-        }else if(month==11){
-            monthName = "November";
-        }else if(month==12){
-            monthName = "December";
-        }else{
-            monthName = "Invalid";
+        int weekNumber = GetWeek(weekDay);
+        if(weekNumber != 0){
+            System.out.println("Week number: "+weekNumber);
+        } else{
+            System.out.println("Week number: INVALID");
         }
 
-        boolean holiday = monthName == "December" || monthName == "January" || monthName == "July";
+        boolean holiday = monthValue == "December" || monthValue == "January" || monthValue == "July";
         if(holiday){
             System.out.println("Holiday");
         }
+        
+        
+    }
 
-        switch(weekDay){
+    public static int GetWeek(String wkDay){
+        int weekNumber;
+        switch(wkDay){
             case "Monday":
                 weekNumber = 2;
                 break;
@@ -67,9 +52,11 @@ public class App {
                 weekNumber = 1;
                 break;
             default:
-                System.out.println("Invalid week");
+                weekNumber = 0;
                 break;
         }
+
+        return weekNumber;
     }
     
 }
