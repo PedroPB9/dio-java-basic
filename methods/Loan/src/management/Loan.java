@@ -1,8 +1,8 @@
 package management;
 public class Loan {
-    float total_price;
-    public Loan(float loaned){
-        total_price = loaned;
+    public float final_price;
+    public Loan(int month, float loaned){
+        this.final_price = make_loan(month, loaned);
     }
     private float calculate(float x, float y, int mode){
         float result = 0.f;
@@ -58,10 +58,10 @@ public class Loan {
         }  
     }
 
-    public float make_loan(int month){
+    public float make_loan(int month, float total_price){
         float fee_pct = 3.5f;
         float fee = calculate(calculate(fee_pct, total_price, 2), 100, 3);
-        float loan = calculate(total_price, calculate(fee, month, 3), 0);
+        float loan = calculate(total_price, calculate(fee, month, 2), 0);
 
         return loan;
     }
